@@ -21,11 +21,22 @@ pub struct SetOptions {
     clear_flags: Option<Flags>,
 }
 
-#[derive(Debug, Clone, Copy)]
+/// An object of account flags.
+#[derive(Debug, Deserialize, Clone, Copy, PartialEq)]
 pub struct Thresholds {
+    #[serde(rename = "low_threshold")]
     low: u32,
+    #[serde(rename = "med_threshold")]
     med: u32,
+    #[serde(rename = "high_threshold")]
     high: u32,
+}
+
+impl Thresholds {
+    /// Create a Thresholds object
+    pub fn new(low: u32, med: u32, high: u32) -> Thresholds {
+        Thresholds { low, med, high }
+    }
 }
 
 impl SetOptions {

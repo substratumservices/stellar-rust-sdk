@@ -295,6 +295,7 @@ struct Intermediate {
     home_domain: Option<String>,
     auth_required_flag: Option<bool>,
     auth_revokable_flag: Option<bool>,
+    auth_immutable_flag: Option<bool>,
     weight: Option<u8>,
     public_key: Option<String>,
     limit: Option<Amount>,
@@ -433,9 +434,10 @@ impl<'de> Deserialize<'de> for Effect {
                     account: Some(account),
                     auth_required_flag: Some(auth_required_flag),
                     auth_revokable_flag: Some(auth_revokable_flag),
+                    auth_immutable_flag: Some(auth_immutable_flag),
                     ..
                 } => {
-                    let flags = Flags::new(auth_required_flag, auth_revokable_flag);
+                    let flags = Flags::new(auth_required_flag, auth_revokable_flag, auth_immutable_flag);
                     Kind::Account(account::Kind::FlagsUpdated(account::FlagsUpdated::new(
                         account, flags,
                     )))

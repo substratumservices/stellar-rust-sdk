@@ -144,7 +144,7 @@ fn it_parses_account_flags_updated_from_json() {
             effect_details.account(),
             "GA6U5X6WOPNKKDKQULBR7IDHDBAQKOWPHYEC7WSXHZBFEYFD3XVZAKOO"
         );
-        assert_eq!(effect_details.flags(), Flags::new(false, true));
+        assert_eq!(effect_details.flags(), Flags::new(false, true, false));
     } else {
         panic!("Did not generate account flags updated kind");
     }

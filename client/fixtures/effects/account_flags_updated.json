@@ -14,6 +14,7 @@
   "paging_token": "13563506724865-1",
   "account": "GA6U5X6WOPNKKDKQULBR7IDHDBAQKOWPHYEC7WSXHZBFEYFD3XVZAKOO",
   "type": "account_flags_updated",
+  "auth_immutable_flag": false,
   "auth_required_flag": false,
   "auth_revokable_flag": true,
   "type_i": 6

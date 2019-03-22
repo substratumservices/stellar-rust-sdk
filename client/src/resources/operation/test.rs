@@ -294,7 +294,7 @@ fn it_parses_a_set_options_from_json() {
         assert!(account_details.clear_flags().is_none());
         assert_eq!(
             account_details.set_flags().unwrap(),
-            Flags::new(true, false)
+            Flags::new(true, false, false)
         );
     } else {
         panic!("Did not generate set options kind");

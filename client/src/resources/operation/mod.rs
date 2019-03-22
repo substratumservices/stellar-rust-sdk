@@ -22,6 +22,7 @@ pub use self::manage_offer::ManageOffer;
 pub use self::path_payment::PathPayment;
 pub use self::payment::Payment;
 pub use self::set_options::SetOptions;
+pub use self::set_options::Thresholds;
 
 /// Use this to quickly load all the operation structs into the current
 /// scope.
@@ -467,7 +468,9 @@ impl<'de> Deserialize<'de> for Operation {
                                 vec_strings.iter().any(|e| e == "auth_required_flag");
                             let auth_revocable =
                                 vec_strings.iter().any(|e| e == "auth_revocable_flag");
-                            Some(Flags::new(auth_required, auth_revocable))
+                            let auth_immutable =
+                                vec_strings.iter().any(|e| e == "auth_immutable_flag");
+                            Some(Flags::new(auth_required, auth_revocable, auth_immutable))
                         }
                         None => None,
                     };
@@ -477,7 +480,9 @@ impl<'de> Deserialize<'de> for Operation {
                                 vec_strings.iter().any(|e| e == "auth_required_flag");
                             let auth_revocable =
                                 vec_strings.iter().any(|e| e == "auth_revocable_flag");
-                            Some(Flags::new(auth_required, auth_revocable))
+                            let auth_immutable =
+                                vec_strings.iter().any(|e| e == "auth_immutable_flag");
+                            Some(Flags::new(auth_required, auth_revocable, auth_immutable))
                         }
                         None => None,
                     };

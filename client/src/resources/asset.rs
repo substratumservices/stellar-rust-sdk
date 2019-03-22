@@ -337,14 +337,16 @@ mod from_str_asset_identifier_tests {
 pub struct Flags {
     auth_required: bool,
     auth_revocable: bool,
+    auth_immutable: bool,
 }
 
 impl Flags {
     /// Creates a new set of flags
-    pub fn new(auth_required: bool, auth_revocable: bool) -> Flags {
+    pub fn new(auth_required: bool, auth_revocable: bool, auth_immutable: bool) -> Flags {
         Flags {
             auth_required,
             auth_revocable,
+            auth_immutable,
         }
     }
 
@@ -361,6 +363,11 @@ impl Flags {
     /// improperly.
     pub fn is_auth_revocable(&self) -> bool {
         self.auth_revocable
+    }
+
+    /// If this field is true it means none of the previous authorization flags can be changed.
+    pub fn is_auth_immutable(&self) -> bool {
+        self.auth_immutable
     }
 }
 
@@ -462,6 +469,11 @@ impl Asset {
         self.flags.auth_revocable
     }
 
+    /// If this field is true it means none of the previous authorization flags can be changed.
+    pub fn is_auth_immutable(&self) -> bool {
+        self.flags.auth_immutable
+    }
+
     /// Returns the flags associated with this asset.
     pub fn flags(&self) -> Flags {
         self.flags
@@ -492,6 +504,8 @@ mod asset_tests {
         assert!(!asset.flags().is_auth_required());
         assert!(asset.is_auth_revocable());
         assert!(asset.flags().is_auth_revocable());
+        assert!(asset.is_auth_immutable());
+        assert!(asset.flags().is_auth_immutable());
         assert_eq!(
             asset.identifier(),
             &AssetIdentifier::alphanum4(
