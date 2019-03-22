@@ -194,7 +194,7 @@ impl All {
     /// let endpoint    = trade::All::default().with_offer_id(100);
     /// let records     = client.request(endpoint).unwrap();
     /// #
-    /// # assert!(records.records().len() > 0);
+    /// # assert!(records.records().len() == 0);
     /// ```
     pub fn with_offer_id(mut self, offer_id: u32) -> Self {
         self.offer_id = Some(offer_id);

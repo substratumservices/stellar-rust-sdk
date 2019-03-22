@@ -219,7 +219,7 @@ mod tests {
         let client = Client::horizon_test().unwrap();
         let endpoint = Details::new("LDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ");
         match client.request(endpoint).unwrap_err() {
-            Error::BadResponse(error) => assert_eq!(error.kind(), stellar_error::Kind::NotFound),
+            Error::BadResponse(error) => assert_eq!(error.kind(), stellar_error::Kind::BadRequest),
             error => panic!("Client did not return a bad response {:?}", error),
         }
     }

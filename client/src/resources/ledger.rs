@@ -9,7 +9,8 @@ pub struct Ledger {
     paging_token: String,
     hash: String,
     sequence: u32,
-    transaction_count: i64,
+    successful_transaction_count: i64,
+    failed_transaction_count: i64,
     operation_count: i64,
     closed_at: DateTime<Utc>,
     total_coins: Amount,
@@ -41,10 +42,13 @@ impl Ledger {
         self.sequence
     }
 
-    /// The number of transactions in this ledger.
-    pub fn transaction_count(&self) -> i64 {
-        self.transaction_count
+    /// The number of successful transactions in this ledger.
+    pub fn successful_transaction_count(&self) -> i64 {
+        self.successful_transaction_count
     }
+
+    /// The number of failed transactions in this ledger.
+    pub fn failed_transaction_count(&self) -> i64 { self.failed_transaction_count }
 
     /// The number of operations in this ledger.
     pub fn operation_count(&self) -> i64 {
@@ -119,7 +123,8 @@ mod ledger_tests {
             "eee9e6e02899365ecae4c37e52db7d99e2d130baf4ec1856d311bb546df1d0ad"
         );
         assert_eq!(ledger.sequence(), 69859);
-        assert_eq!(ledger.transaction_count(), 0);
+        assert_eq!(ledger.successful_transaction_count(), 0);
+        assert_eq!(ledger.failed_transaction_count(), 0);
         assert_eq!(ledger.operation_count(), 0);
         assert_eq!(ledger.closed_at(), Utc.ymd(2017, 3, 23).and_hms(20, 13, 23));
         assert_eq!(ledger.total_coins(), Amount::new(1_000_000_000_000_000_000));
