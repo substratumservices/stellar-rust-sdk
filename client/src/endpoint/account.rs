@@ -75,7 +75,7 @@ impl IntoRequest for Details {
 /// let endpoint    = account::Data::new("GATLAI2D7SSH6PE3HXTDPTRM4RE5VRK6HGA63K5EWP75PSANCZRFDNB5", "Food");
 /// // let record      = client.request(endpoint).unwrap();
 /// #
-/// // assert_eq!(record.value(), "Food");
+/// // assert_eq!(record.value(), "Pizza");
 /// ```
 #[derive(Debug)]
 pub struct Data {
